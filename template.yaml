@@ -79,6 +79,30 @@ Resources:
           Properties:
             Path: /todos/{id}
             Method: put
+  TranslateFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: src/
+      Handler: translate.translate
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action: 
+              - dynamodb:GetItem
+              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:*:table/${TABLENAME}_${ENVIRONMENT}"
+              
+        - Statement:
+            - Effect: Allow
+              Action: 
+              - translate:TranslateText
+              - comprehend:DetectDominantLanguage
+              Resource: "*"
+      Events:
+        API:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /todos/{id}/{lang}
+            Method: get          
   DeleteTodoFunction:
     Type: AWS::Serverless::Function 
     Properties:
