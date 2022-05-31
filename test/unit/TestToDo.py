@@ -199,6 +199,18 @@ class TestDatabaseFunctions(unittest.TestCase):
         # Testing file functions
         self.assertRaises(TypeError, delete_item("", self.dynamodb))
         print ('End: test_delete_todo_error')
+        
+    def test_table_exists_error(self):
+        print ('---------------------')
+        print ('Start: test_table_exists_error')
+        from src.todoList import get_table
+        
+        try:
+            get_table(None)
+        except Exception as ex:
+            print(ex)
+        
+        print ('End: test_table_exists_error')
 
 
 
