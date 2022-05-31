@@ -20,7 +20,7 @@ def get_table(dynamodb=None):
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
     return table
 
-#def getTranslate(id, lang):
+# def getTranslate(id, lang):
 #    apitranslate = boto3.client('translate')
 #
 #    try:
