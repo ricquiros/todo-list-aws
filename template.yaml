@@ -79,30 +79,30 @@ Resources:
           Properties:
             Path: /todos/{id}
             Method: put
-  TranslateFunction:
-    Type: AWS::Serverless::Function 
-    Properties:
-      CodeUri: src/
-      Handler: translate.translate
-      Policies:
-        - Statement:
-            - Effect: Allow
-              Action: 
-              - dynamodb:GetItem
-              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:*:table/${TABLENAME}_${ENVIRONMENT}"
-              
-        - Statement:
-            - Effect: Allow
-              Action: 
-              - translate:TranslateText
-              - comprehend:DetectDominantLanguage
-              Resource: "*"
-      Events:
-        API:
-          Type: Api 
-          Properties:
-            Path: /todos/{id}/{lang}
-            Method: get          
+  #TranslateFunction:
+  #  Type: AWS::Serverless::Function 
+  #  Properties:
+  #    CodeUri: src/
+  #    Handler: translate.translate
+  #    Policies:
+  #      - Statement:
+  #          - Effect: Allow
+  #            Action: 
+  #            - dynamodb:GetItem
+  #            Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:*:table/${TABLENAME}_${ENVIRONMENT}"
+  #            
+  #      - Statement:
+  #          - Effect: Allow
+  #            Action: 
+  #            - translate:TranslateText
+  #            - comprehend:DetectDominantLanguage
+  #            Resource: "*"
+  #    Events:
+  #      API:
+  #        Type: Api 
+  #        Properties:
+  #          Path: /todos/{id}/{lang}
+  #          Method: get          
   DeleteTodoFunction:
     Type: AWS::Serverless::Function 
     Properties:
