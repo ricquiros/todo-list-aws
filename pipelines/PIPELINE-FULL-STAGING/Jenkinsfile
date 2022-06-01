@@ -24,11 +24,11 @@ pipeline {
                                 mergeToOneReport: true, 
                                 path: '**/coverage.xml')])
                             }
-                   # script {
-                   #     def flake8 = scanForIssues tool: flake8(pattern: 'flake8.out')
-                   #         publishIssues issues: [flake8]
-                   #         }
-                   #     }
+                   /* script {
+                        def flake8 = scanForIssues tool: flake8(pattern: 'flake8.out')
+                            publishIssues issues: [flake8]
+                            }
+                        } */
                   }
         }
        stage('Build') {
