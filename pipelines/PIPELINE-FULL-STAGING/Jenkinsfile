@@ -27,8 +27,8 @@ pipeline {
                    /* script {
                         def flake8 = scanForIssues tool: flake8(pattern: 'flake8.out')
                             publishIssues issues: [flake8]
-                            }
-                        } */
+                            }*/
+                        } 
                   }
         }
        stage('Build') {
