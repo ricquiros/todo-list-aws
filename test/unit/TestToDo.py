@@ -19,7 +19,6 @@ def mock_table(self):
     self.table.put_item.side_effect =  ClientError({'Error': {'Code': 'MockedException', 'Message': 'This is a Mock'}},
         os.environ['DYNAMODB_TABLE'])
 
-
 @mock_dynamodb2
 class TestDatabaseFunctions(unittest.TestCase):
     def setUp(self):
@@ -69,8 +68,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         # check if the table name is 'ToDo'
         self.assertIn(tableName, self.table.name)
         #self.assertIn('todoTable', self.table_local.name)
-        print ('End: test_table_exists')
-        
+        print ('End: test_table_exists')       
 
     def test_put_todo(self):
         print ('---------------------')
@@ -89,10 +87,8 @@ class TestDatabaseFunctions(unittest.TestCase):
     def test_put_todo_error(self):
         print ('---------------------')
         print ('Start: test_put_todo_error')
-        
         # Testing file functions
         from src.todoList import put_item
-        
         # Table mock
         self.assertRaises(Exception, put_item("", self.dynamodb))
         
@@ -100,9 +96,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.table.put_item.side_effect = self.dbException
         print ('Table mocked for put_item()')
         
-        self.assertRaises(Exception, put_item("", self.dynamodb))
-         
-        
+        self.assertRaises(Exception, put_item("", self.dynamodb))  
         print ('End: test_put_todo_error')
 
     def test_get_todo(self):
