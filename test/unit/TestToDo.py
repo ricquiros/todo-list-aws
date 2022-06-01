@@ -91,9 +91,9 @@ class TestDatabaseFunctions(unittest.TestCase):
         from src.todoList import put_item
         # Table mock
         self.assertRaises(Exception, put_item("", self.dynamodb))
-            mock_table(self)
+            """mock_table(self)
             self.table.put_item.side_effect = self.dbException
-            print ('Table mocked for put_item()')
+            print ('Table mocked for put_item()')"""
         self.assertRaises(Exception, put_item("", self.dynamodb))
         print ('End: test_put_todo_error')
 
