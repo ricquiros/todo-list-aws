@@ -99,7 +99,7 @@ def update_item(key, text, checked, dynamodb=None):
     else:
         return result['Attributes']
 
-    
+
 def delete_item(key, dynamodb=None):
     table = get_table(dynamodb)
     # delete the todo from the database
