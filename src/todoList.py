@@ -20,28 +20,6 @@ def get_table(dynamodb=None):
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
     return table
 
-# def getTranslate(id, lang):
-#    apitranslate = boto3.client('translate')
-#
-#    try:
-#        response = table.get_item(
-#            Key={
-#                'id': id
-#            }
-#        )
-#        text = response['Item']['text']
-#        translatedText = apitranslate.translate_text(
-#            Text=text,
-#            SourceLanguageCode='auto',
-#            TargetLanguageCode=lang
-#        )
-#
-#        response['Item']['text'] = translatedText['TranslatedText']
-#    except ClientError as e:
-#        print(e.response['Error']['Message'])
-#    else:
-#        return response
-
 
 def get_item(key, dynamodb=None):
     table = get_table(dynamodb)
@@ -121,7 +99,28 @@ def update_item(key, text, checked, dynamodb=None):
     else:
         return result['Attributes']
 
-
+# def getTranslate(id, lang):
+#    apitranslate = boto3.client('translate')
+#
+#    try:
+#        response = table.get_item(
+#            Key={
+#                'id': id
+#            }
+#        )
+#        text = response['Item']['text']
+#        translatedText = apitranslate.translate_text(
+#            Text=text,
+#            SourceLanguageCode='auto',
+#            TargetLanguageCode=lang
+#        )
+#
+#        response['Item']['text'] = translatedText['TranslatedText']
+#    except ClientError as e:
+#        print(e.response['Error']['Message'])
+#    else:
+#        return response
+    
 def delete_item(key, dynamodb=None):
     table = get_table(dynamodb)
     # delete the todo from the database
