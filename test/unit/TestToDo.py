@@ -8,18 +8,6 @@ import os
 import json
 
 @mock_dynamodb2
-def mock_table(self):
-    from src.todoList import get_table
-    from unittest.mock import Mock
-
-    self.table = get_table(self.dynamodb)
-    self.table = Mock()
-
-    from botocore.exceptions import ClientError
-    self.table.put_item.side_effect =  ClientError({'Error': {'Code': 'MockedException', 'Message': 'This is a Mock'}},
-        os.environ['DYNAMODB_TABLE'])
-
-@mock_dynamodb2
 class TestDatabaseFunctions(unittest.TestCase):
     def setUp(self):
         print ('---------------------')
@@ -68,7 +56,8 @@ class TestDatabaseFunctions(unittest.TestCase):
         # check if the table name is 'ToDo'
         self.assertIn(tableName, self.table.name)
         #self.assertIn('todoTable', self.table_local.name)
-        print ('End: test_table_exists')       
+        print ('End: test_table_exists')
+        
 
     def test_put_todo(self):
         print ('---------------------')
@@ -91,13 +80,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         from src.todoList import put_item
         # Table mock
         self.assertRaises(Exception, put_item("", self.dynamodb))
-        #
-        # mock_table(self)
-        # self.table.put_item.side_effect = self.dbException
-        # print ('Table mocked for put_item()')
-        # 
         self.assertRaises(Exception, put_item("", self.dynamodb))
-        
         print ('End: test_put_todo_error')
 
     def test_get_todo(self):
@@ -216,18 +199,6 @@ class TestDatabaseFunctions(unittest.TestCase):
         # Testing file functions
         self.assertRaises(TypeError, delete_item("", self.dynamodb))
         print ('End: test_delete_todo_error')
-        
-    def test_table_exists_error(self):
-        print ('---------------------')
-        print ('Start: test_table_exists_error')
-        from src.todoList import get_table
-        
-        try:
-            get_table(None)
-        except Exception as ex:
-            print(ex)
-        
-        print ('End: test_table_exists_error')
 
 
 
