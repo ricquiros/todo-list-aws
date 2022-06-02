@@ -99,7 +99,7 @@ def update_item(key, text, checked, dynamodb=None):
     else:
         return result['Attributes']
     
-def getTranslate(id, lang):
+"""def getTranslate(id, lang):
     apitranslate = boto3.client('translate')
 
     try:
@@ -120,7 +120,7 @@ def getTranslate(id, lang):
         print(e.response['Error']['Message'])
     else:
         return response
-
+"""
 def delete_item(key, dynamodb=None):
     table = get_table(dynamodb)
     # delete the todo from the database
