@@ -99,7 +99,7 @@ def update_item(key, text, checked, dynamodb=None):
     else:
         return result['Attributes']
     
-"""def getTranslate(id, lang):
+""" def getTranslate(id, lang):
     apitranslate = boto3.client('translate')
 
     try:
