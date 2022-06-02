@@ -98,7 +98,7 @@ def update_item(key, text, checked, dynamodb=None):
         print(e.response['Error']['Message'])
     else:
         return result['Attributes']
-    
+
 
 def delete_item(key, dynamodb=None):
     table = get_table(dynamodb)
